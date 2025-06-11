@@ -1,0 +1,40 @@
+.speeder-slider-container {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    font-size: small;
+    width: 100%;
+    font-family: monospace;
+}
+
+.speeder-slider-label {
+    color: silver;
+}
+
+.speeder-slider {
+    width: 100%;
+    cursor: default;
+    -webkit-appearance: none;
+    height: 4px;
+    background: silver;
+    border-radius: 2px;
+}
+
+.speeder-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 16px;
+    width: 16px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 10px 1px rgb(46 46 46 / 70%);
+    cursor: default;
+}
+
+.speeder-slider::-moz-range-thumb {
+    height: 16px;
+    width: 16px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 10px 1px rgb(46 46 46 / 70%);
+    cursor: default;
+}

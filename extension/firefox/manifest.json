@@ -1,0 +1,28 @@
+{
+  "version": "0.1.0",
+  "manifest_version": 3,
+  "name": "Speeder - YouTube Speed Controller",
+  "description": "Control the playback speed of YouTube videos for a comfortable viewing experience.",
+  "permissions": ["storage"],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.youtube.com/watch?v=*",
+        "https://*.youtube.com/shorts/*"
+      ],
+      "js": ["lib/app.js"],
+      "css": ["lib/app.css"],
+      "run_at": "document_end",
+      "all_frames": false
+    }
+  ],
+  "background": {
+    "scripts": ["lib/sw.js"]
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "speeder@example.com",
+      "strict_min_version": "58.0"
+    }
+  }
+}

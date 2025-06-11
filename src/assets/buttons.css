@@ -1,0 +1,19 @@
+.speeder-btns {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.speeder-btns button {
+    font-family: monospace;
+    background: silver;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: large;
+    font-weight: bold;
+    border: 1px solid #2e2e2e;
+}
+
+.speeder-btns button:hover {
+    background: #f0f0f0;
+}
