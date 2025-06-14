@@ -1,22 +1,30 @@
 {
-  "version": "0.1.0",
+  "$schema": "https://json.schemastore.org/chrome-manifest",
+  "version": "0.0.4",
   "manifest_version": 3,
   "name": "Speeder - YouTube Speed Controller",
   "description": "Control the playback speed of YouTube videos for a comfortable viewing experience.",
+  "homepage_url": "https://github.com/doroved/speeder",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqUNkZGUQ8t0J61a2NwSTzcp5ET4vnWMT3l34ALbttYcnp6QrwAvSbR30NWetGeRtfTzOXxo1AqtLRdnuA87N74W2kDiK7oZfwHZseDFDdHSbcNsdSrNbcEo3EaYiIqFmbyj91GUhOgO2wn0E0rF5b9nz8VfQFWH1AV7AwruucP/q9V/y19/7KFtgIjO/nG6osGteuMctHF8i1dpUINmmoYMR7wrR3i+loNPvMdlzCWZ1J7G0oXz70IU+kWyyWGCBFLOsr2d3yjWCyEjYGAKO32T0ALPiGybC488kraYNQWyEwOPofMUs8PTequwuKP8nVimF0KSNmhm6lubROi00VQIDAQAB",
+  "icons": {
+    "16": "icons/16.png",
+    "32": "icons/32.png",
+    "48": "icons/48.png",
+    "128": "icons/128.png"
+  },
   "permissions": ["storage"],
   "content_scripts": [
     {
       "matches": [
-        "https://*.youtube.com/watch?v=*",
-        "https://*.youtube.com/shorts/*"
+        "https://www.youtube.com/watch?v=*",
+        "https://www.youtube.com/shorts/*"
       ],
-      "js": ["lib/app.js"],
-      "css": ["lib/app.css"],
-      "run_at": "document_end",
-      "all_frames": false
+      "js": ["src/app.js"],
+      "css": ["src/app.css"],
+      "run_at": "document_end"
     }
   ],
   "background": {
-    "service_worker": "lib/sw.js"
+    "service_worker": "src/sw.js"
   }
 }

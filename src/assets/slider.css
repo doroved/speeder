@@ -12,12 +12,14 @@
 }
 
 .speeder-slider {
+    -webkit-appearance: none;
+    -moz-appearance: none;
     width: 100%;
     cursor: default;
-    -webkit-appearance: none;
     height: 4px;
     background: silver;
     border-radius: 2px;
+    outline: none;
 }
 
 .speeder-slider::-webkit-slider-thumb {
@@ -25,15 +27,18 @@
     height: 16px;
     width: 16px;
     background: white;
+    border: none;
     border-radius: 50%;
     box-shadow: 0 0 10px 1px rgb(46 46 46 / 70%);
     cursor: default;
 }
 
 .speeder-slider::-moz-range-thumb {
+    -moz-appearance: none;
     height: 16px;
     width: 16px;
     background: white;
+    border: none;
     border-radius: 50%;
     box-shadow: 0 0 10px 1px rgb(46 46 46 / 70%);
     cursor: default;

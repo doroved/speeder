@@ -4,14 +4,16 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
     "build": "tsc && vite build",
     "build:dev": "tsc && vite build --mode development",
-    "preview": "vite preview"
+    "build:release": "bun run build && bun src/utils/zipExtensions.ts"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "@types/archiver": "^6.0.3",
     "@types/bun": "^1.2.15",
     "@types/chrome": "^0.0.326",
+    "archiver": "^7.0.1",
     "typescript": "~5.8.3",
     "vite": "^6.3.5"
   }

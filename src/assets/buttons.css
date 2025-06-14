@@ -1,10 +1,10 @@
-.speeder-btns {
+.speeder-buttons {
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
 
-.speeder-btns button {
+.speeder-buttons button {
     font-family: monospace;
     background: silver;
     border: none;
@@ -12,8 +12,9 @@
     font-size: large;
     font-weight: bold;
     border: 1px solid #2e2e2e;
+    outline: none;
 }
 
-.speeder-btns button:hover {
+.speeder-buttons button:hover {
     background: #f0f0f0;
 }

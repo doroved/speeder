@@ -16,6 +16,7 @@
     padding: 1rem;
     border-radius: 1rem;
     backdrop-filter: blur(3px);
+    /* box-shadow: rgba(14, 14, 14, 0.7) 0px 0px 10px 1px; */
 }
 
 .speeder-display {

@@ -14,11 +14,11 @@ export default defineConfig(({ mode }) => {
         },
         output: [
           {
-            dir: "extension/chrome/lib",
+            dir: "extension/chrome/src",
             ...getOutputOptions(),
           },
           {
-            dir: "extension/firefox/lib",
+            dir: "extension/firefox/src",
             ...getOutputOptions(),
           },
         ],
