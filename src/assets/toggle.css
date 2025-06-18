@@ -1,0 +1,10 @@
+.speeder-toggle {
+    position: absolute;
+    top: -9px;
+    width: 16px;
+    height: 16px;
+}
+
+.speeder-toggle:hover svg {
+    stroke: white;
+}

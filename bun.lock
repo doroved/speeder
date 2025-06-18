@@ -6,9 +6,10 @@
       "devDependencies": {
         "@biomejs/biome": "1.9.4",
         "@types/archiver": "^6.0.3",
-        "@types/bun": "^1.2.15",
+        "@types/bun": "^1.2.16",
         "@types/chrome": "^0.0.326",
         "archiver": "^7.0.1",
+        "lucide": "^0.515.0",
         "typescript": "~5.8.3",
         "vite": "^6.3.5",
       },
@@ -228,6 +229,8 @@
     "lodash": ["lodash@4.17.21", "", {}, "sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg=="],
 
     "lru-cache": ["lru-cache@10.4.3", "", {}, "sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ=="],
+
+    "lucide": ["lucide@0.515.0", "", {}, "sha512-n7tFK3R1HdsxwM5rMOa6twAi/4RGZCysc7dmk7Cr2GiOUcnHX0+MX9xw3xynpbekXCgS4+o9HeIWhBl3rZHIAA=="],
 
     "minimatch": ["minimatch@5.1.6", "", { "dependencies": { "brace-expansion": "^2.0.1" } }, "sha512-lKwV/1brpG6mBUFHtb7NUmtABCb2WZZmm2wNiOA5hAb8VdCS4B3dtMWyvcoViccwAW/COERjXLt0zP1zXUN26g=="],
 

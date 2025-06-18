@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/chrome-manifest",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "manifest_version": 3,
   "name": "Speeder - YouTube Speed Controller",
   "description": "Control the playback speed of YouTube videos for a comfortable viewing experience.",
@@ -15,16 +15,11 @@
   "permissions": ["storage"],
   "content_scripts": [
     {
-      "matches": [
-        "https://www.youtube.com/watch?v=*",
-        "https://www.youtube.com/shorts/*"
-      ],
+      "matches": ["https://*.youtube.com/*"],
       "js": ["src/app.js"],
       "css": ["src/app.css"],
-      "run_at": "document_end"
+      "run_at": "document_end",
+      "all_frames": false
     }
-  ],
-  "background": {
-    "service_worker": "src/sw.js"
-  }
+  ]
 }
