@@ -2,19 +2,19 @@ import { ChevronsUpDown, createElement } from "lucide";
 import { speederListeners } from "./appListeners";
 import { initPlayerObserver, initShortsObserver } from "./observers";
 
-interface Channel {
+export interface Channel {
 	username: string;
 	name: string;
 }
 
-interface Storage {
+export interface Storage {
 	playbackRate: number;
 	hiddenSlider: boolean;
 	channel: Channel[];
 }
 
 export const initSpeederController = async (ytVideo: HTMLVideoElement) => {
-	const storage = await chrome.storage.sync.get(null);
+	const storage: Storage = await chrome.storage.sync.get(null);
 
 	const speederContainer = document.createElement("speeder");
 	speederContainer.className = "speeder-container";
@@ -85,7 +85,7 @@ export const initSpeederController = async (ytVideo: HTMLVideoElement) => {
 	if (storage.playbackRate) {
 		ytVideo.playbackRate = storage.playbackRate;
 		speederDisplay.innerText = `${storage.playbackRate.toFixed(2)}x`;
-		slider.value = storage.playbackRate;
+		slider.value = storage.playbackRate.toString();
 		highlightButton(storage.playbackRate, buttonContainer);
 	} else {
 		ytVideo.playbackRate = 1;

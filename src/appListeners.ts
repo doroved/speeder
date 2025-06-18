@@ -1,4 +1,5 @@
 import { highlightButton } from "./initController";
+import type { Storage } from "./initController";
 
 export const speederListeners = (
 	speederToggle: HTMLDivElement,

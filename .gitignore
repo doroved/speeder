@@ -1,6 +1,7 @@
 node_modules
 extension/*/src/*
 extension/releases
+NOTE.md
 TEST
 
 # Editor directories and files
