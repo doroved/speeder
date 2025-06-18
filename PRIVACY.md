@@ -1,5 +1,5 @@
 # Privacy Policy
-Last updated: June 20, 2025
+Last updated: June 18, 2025
 
 ## Information Collection and Use
 We do not collect any health, financial and payment, authentication, personal communications, location, web history, user activity, website content information, or other types of personally identifiable information.
