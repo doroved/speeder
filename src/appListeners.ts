@@ -17,7 +17,6 @@ export const speederListeners = (
 	};
 
 	slider.ondblclick = () => {
-		console.log("[Speeder] slider.ondblclick");
 		ytVideo.playbackRate = 1;
 		speederDisplay.innerText = `${ytVideo.playbackRate.toFixed(2)}x`;
 		slider.value = ytVideo.playbackRate.toString();
@@ -42,7 +41,7 @@ export const speederListeners = (
 		clearTimeout(debounceTimer);
 		debounceTimer = setTimeout(() => {
 			chrome.storage.sync.set({ playbackRate: speed });
-			console.log("[Speeder] Save new speed:", speed);
+			// console.log("[Speeder] Save new speed:", speed);
 		}, 300);
 	});
 
@@ -89,15 +88,15 @@ export const speederListeners = (
 
 	// Этот код запускается при переходе на видео внутри YT
 	ytVideo.addEventListener("play", async () => {
-		console.log("[Speeder] Video started playing");
+		// console.log("[Speeder] Video started playing");
 
-		const channelUsernameElement = document.querySelector(
-			"#owner > ytd-video-owner-renderer > a",
-		) as HTMLAnchorElement | null;
-		const channelUsername = channelUsernameElement?.href
-			? channelUsernameElement.href.split("@")[1]
-			: undefined;
-		console.log("[Speeder] ChannelUsername:", channelUsername);
+		// const channelUsernameElement = document.querySelector(
+		// 	"#owner > ytd-video-owner-renderer > a",
+		// ) as HTMLAnchorElement | null;
+		// const channelUsername = channelUsernameElement?.href
+		// 	? channelUsernameElement.href.split("@")[1]
+		// 	: undefined;
+		// console.log("[Speeder] ChannelUsername:", channelUsername);
 
 		const storage: Storage = await chrome.storage.sync.get(null);
 

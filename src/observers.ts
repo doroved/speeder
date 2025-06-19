@@ -37,8 +37,6 @@ export function initVideoObserver() {
 	const videoObserver = new MutationObserver((mutationsList) => {
 		for (const mutation of mutationsList) {
 			for (const node of mutation.addedNodes) {
-				// console.log("[Speeder] node.nodeName", node.nodeName);
-
 				if (node.nodeName === "VIDEO") {
 					initSpeederController(node as HTMLVideoElement);
 				}
@@ -61,7 +59,7 @@ export function initShortsObserver(speederContainer: HTMLElement) {
 				const height = (metadataContainer as HTMLElement).offsetHeight;
 				if (height > 0) {
 					(speederContainer as HTMLElement).style.bottom = `${height}px`;
-					console.log("[Speeder] metadata height updated:", height);
+					// console.log("[Speeder] metadata height updated:", height);
 				} else {
 					setTimeout(updatePosition, 10);
 				}

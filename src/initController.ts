@@ -73,15 +73,6 @@ export const initSpeederController = async (ytVideo: HTMLVideoElement) => {
 	speederContainer.appendChild(sliderContainer);
 	speederContainer.appendChild(buttonContainer);
 
-	speederListeners(
-		speederToggle,
-		speederDisplay,
-		sliderContainer,
-		slider,
-		buttonContainer,
-		ytVideo,
-	);
-
 	if (storage.playbackRate) {
 		ytVideo.playbackRate = storage.playbackRate;
 		speederDisplay.innerText = `${storage.playbackRate.toFixed(2)}x`;
@@ -106,6 +97,15 @@ export const initSpeederController = async (ytVideo: HTMLVideoElement) => {
 			console.log("[Speeder] Setting up MutationObserver for shorts-player");
 			initShortsObserver(speederContainer);
 		}
+
+		speederListeners(
+			speederToggle,
+			speederDisplay,
+			sliderContainer,
+			slider,
+			buttonContainer,
+			ytVideo,
+		);
 
 		ytPlayer.appendChild(speederContainer);
 		initPlayerObserver(ytPlayer, speederContainer);
