@@ -52,7 +52,7 @@ export const speederListeners = (
 			event.preventDefault();
 			event.stopPropagation();
 
-			const speed = Number.parseFloat(target.dataset.speed || "1");
+			const speed = Number.parseFloat(target.innerText || "1");
 			ytVideo.playbackRate = speed;
 			chrome.storage.sync.set({ playbackRate: speed });
 

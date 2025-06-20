@@ -60,7 +60,6 @@ export const initSpeederController = async (ytVideo: HTMLVideoElement) => {
 	for (const speed of speeds) {
 		const button = document.createElement("button");
 		button.innerText = speed.toString();
-		button.dataset.speed = speed.toString();
 		buttonContainer.appendChild(button);
 	}
 
