@@ -34,15 +34,15 @@ import { initVideoObserver } from "./observers";
 // };
 
 const createApp = () => {
-	for (const ytVideo of document.getElementsByTagName("video")) {
-		initSpeederController(ytVideo);
-	}
+  for (const ytVideo of document.getElementsByTagName("video")) {
+    initSpeederController(ytVideo);
+  }
 };
 
 const startApp = async () => {
-	// await initStorage();
-	createApp();
-	initVideoObserver();
+  // await initStorage();
+  createApp();
+  initVideoObserver();
 };
 
 startApp();

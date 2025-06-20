@@ -3,27 +3,27 @@
 @import url("buttons.css");
 
 .speeder-container {
-    position: absolute;
-    bottom: 60px;
-    left: 50%;
-    z-index: 9999;
-    display: flex;
-    gap: 0.75rem;
-    border: 1px solid #2e2e2e;
-    flex-direction: column;
-    align-items: center;
-    transform: translate(-50%);
-    background: rgba(24, 24, 24, 0.7);
-    padding: 1rem;
-    border-radius: 1rem;
-    backdrop-filter: blur(3px);
-    /* box-shadow: rgba(14, 14, 14, 0.7) 0px 0px 10px 1px; */
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  z-index: 9999;
+  display: flex;
+  gap: 0.75rem;
+  border: 1px solid #2e2e2e;
+  flex-direction: column;
+  align-items: center;
+  transform: translate(-50%);
+  background: rgba(24, 24, 24, 0.7);
+  padding: 1rem;
+  border-radius: 1rem;
+  backdrop-filter: blur(3px);
+  /* box-shadow: rgba(14, 14, 14, 0.7) 0px 0px 10px 1px; */
 }
 
 .speeder-display {
-    font-size: large;
-    font-family: monospace;
-    font-weight: bold;
-    color: #fff;
-    line-height: 1;
+  font-size: large;
+  font-family: monospace;
+  font-weight: bold;
+  color: #fff;
+  line-height: 1;
 }
