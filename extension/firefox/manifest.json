@@ -1,5 +1,4 @@
 {
-  "$schema": "https://json.schemastore.org/chrome-manifest",
   "version": "0.1.0",
   "manifest_version": 3,
   "name": "Speeder - YouTube Speed Controller",
@@ -23,7 +22,7 @@
   ],
   "browser_specific_settings": {
     "gecko": {
-      "id": "speeder@example.com",
+      "id": "speeder@doroved.com",
       "strict_min_version": "58.0"
     }
   }
