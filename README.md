@@ -2,6 +2,9 @@
 
 This project is a Chrome browser extension that allows users to control the playback speed of videos on YouTube. The extension helps users enjoy videos comfortably by adjusting the playback speed from 0.1x to 16x.
 
+## Installation from Web Store
+[![Install from Chrome Web Store](available_chrome.png)](https://chrome.google.com/webstore/detail/hkhfaempiaejenaddpbeckghomphjjcp)
+
 ## Key Features:
 - Set playback speed using a slider.
 - Quickly reset playback speed with a double-click on the slider.
