@@ -1,4 +1,3 @@
-import { ChevronsUpDown, createElement } from "lucide";
 import { speederListeners } from "./appListeners";
 import { initPlayerObserver, initShortsObserver } from "./observers";
 
@@ -22,12 +21,7 @@ export const initSpeederController = async (ytVideo: HTMLVideoElement) => {
   const speederToggle = document.createElement("div");
   speederToggle.className = "speeder-toggle";
 
-  const toggleIcon = createElement(ChevronsUpDown); // Returns HTMLElement (svg)
-  toggleIcon.style.width = "16px";
-  toggleIcon.style.height = "16px";
-  toggleIcon.style.background = "#2e2e2e";
-  toggleIcon.style.borderRadius = "100%";
-  toggleIcon.setAttribute("stroke", "#c0c0c0");
+  const toggleIcon = createSvgChevronsUpDownIcon();
 
   const speederDisplay = document.createElement("span");
   speederDisplay.className = "speeder-display";
@@ -132,6 +126,41 @@ export const highlightButton = (
     activeButton.style.backgroundColor = "white"; // Цвет фона для выделенной кнопки
   }
 };
+
+// Функция для создания SVG иконки "chevrons up down"
+function createSvgChevronsUpDownIcon() {
+  // Создаём SVG элемент
+  const svgNS = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(svgNS, "svg");
+  svg.setAttribute("width", "16");
+  svg.setAttribute("height", "16");
+  svg.setAttribute("viewBox", "0 0 24 24");
+  svg.setAttribute("fill", "none");
+  svg.setAttribute("stroke", "#c0c0c0");
+  svg.setAttribute("stroke-width", "2");
+  svg.setAttribute("stroke-linecap", "round");
+  svg.setAttribute("stroke-linejoin", "round");
+  svg.setAttribute(
+    "class",
+    "lucide lucide-chevrons-up-down-icon lucide-chevrons-up-down",
+  );
+  svg.style.background = "#2e2e2e";
+  svg.style.borderRadius = "100%";
+
+  // Создаём первый path элемент для верхней стрелки
+  const pathUp = document.createElementNS(svgNS, "path");
+  pathUp.setAttribute("d", "m7 9 5-5 5 5");
+
+  // Создаём второй path элемент для нижней стрелки
+  const pathDown = document.createElementNS(svgNS, "path");
+  pathDown.setAttribute("d", "m7 15 5 5 5-5");
+
+  // Добавляем path элементы в SVG
+  svg.appendChild(pathUp);
+  svg.appendChild(pathDown);
+
+  return svg;
+}
 
 // function extractAuthorInfo(): { username: string; name: string } | null {
 // 	// Получаем элемент с itemprop="author"
