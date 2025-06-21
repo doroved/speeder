@@ -18,12 +18,9 @@
       "js": ["src/app.js"],
       "css": ["src/app.css"],
       "run_at": "document_end",
-      "all_frames": false
+      "all_frames": true
     }
   ],
-  "background": {
-    "scripts": ["src/sw.js"]
-  },
   "browser_specific_settings": {
     "gecko": {
       "id": "speeder@example.com",
