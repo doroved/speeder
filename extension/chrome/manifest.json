@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/chrome-manifest",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "manifest_version": 3,
   "name": "Speeder - YouTube Speed Controller",
   "description": "Control the playback speed of YouTube videos for a comfortable viewing experience.",

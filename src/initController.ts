@@ -66,17 +66,17 @@ export const initSpeederController = async (ytVideo: HTMLVideoElement) => {
   speederContainer.appendChild(sliderContainer);
   speederContainer.appendChild(buttonContainer);
 
-  if (storage.playbackRate) {
-    ytVideo.playbackRate = storage.playbackRate;
-    speederDisplay.innerText = `${storage.playbackRate.toFixed(2)}x`;
-    slider.value = storage.playbackRate.toString();
-    highlightButton(storage.playbackRate, buttonContainer);
-  } else {
-    ytVideo.playbackRate = 1;
-    speederDisplay.innerText = `${ytVideo.playbackRate.toFixed(2)}x`;
-    slider.value = ytVideo.playbackRate.toString();
-    highlightButton(1, buttonContainer);
-  }
+  // if (storage.playbackRate) {
+  //   ytVideo.playbackRate = storage.playbackRate;
+  //   speederDisplay.innerText = `${storage.playbackRate.toFixed(2)}x`;
+  //   slider.value = storage.playbackRate.toString();
+  //   highlightButton(storage.playbackRate, buttonContainer);
+  // } else {
+  //   ytVideo.playbackRate = 1;
+  speederDisplay.innerText = `${ytVideo.playbackRate.toFixed(2)}x`;
+  slider.value = ytVideo.playbackRate.toString();
+  highlightButton(1, buttonContainer);
+  // }
 
   if (storage.hiddenSlider) {
     speederDisplay.style.display = "none";
@@ -197,17 +197,29 @@ function createSvgChevronsUpDownIcon() {
 // 	};
 // }
 
-// const videoOwner =
-// 	ytInitialData.contents.twoColumnWatchNextResults.results.results.contents[1]
-// 		.videoSecondaryInfoRenderer.owner.videoOwnerRenderer;
+// const getVideoOwnerInfo = () => {
+//   const videoOwner =
+//     ytInitialData.contents.twoColumnWatchNextResults.results.results.contents[1]
+//       .videoSecondaryInfoRenderer.owner.videoOwnerRenderer;
 
-// // Аватарка канала
-// videoOwner.thumbnail.thumbnails[0].url;
+//   return {
+//     thumbnail: videoOwner.thumbnail.thumbnails[0].url,
+//     channelName: videoOwner.title.runs[0].text,
+//     username:
+//       videoOwner.title.runs[0].navigationEndpoint.commandMetadata.webCommandMetadata.url.slice(
+//         1,
+//       ),
+//   };
+// };
 
-// // Название канала
-// videoOwner.title.runs[0].text;
+// export const getVideoOwnerInfo = () => {
+//   const videoOwner = (window as any).ytInitialPlayerResponse.microformat
+//     .playerMicroformatRenderer;
 
-// // username канала
-// videoOwner.title.runs[0].navigationEndpoint.commandMetadata.webCommandMetadata.url.slice(
-// 	1,
-// );
+//   return {
+//     // thumbnail: videoOwner.thumbnail.thumbnails[0].url,
+//     channelName: videoOwner.ownerChannelName,
+//     username: videoOwner.ownerProfileUrl.split("@")[1],
+//     externalVideoId: videoOwner.externalVideoId,
+//   };
+// };
