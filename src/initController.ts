@@ -12,6 +12,16 @@ export interface Storage {
   channel: Channel[];
 }
 
+interface VideoState {
+  current: string | null;
+  latest: string | null;
+}
+
+export const videoSrc: VideoState = {
+  current: null,
+  latest: null,
+};
+
 export const initSpeederController = async (ytVideo: HTMLVideoElement) => {
   const storage: Storage = await chrome.storage.sync.get(null);
 
@@ -66,29 +76,43 @@ export const initSpeederController = async (ytVideo: HTMLVideoElement) => {
   speederContainer.appendChild(sliderContainer);
   speederContainer.appendChild(buttonContainer);
 
-  // if (storage.playbackRate) {
-  //   ytVideo.playbackRate = storage.playbackRate;
-  //   speederDisplay.innerText = `${storage.playbackRate.toFixed(2)}x`;
-  //   slider.value = storage.playbackRate.toString();
-  //   highlightButton(storage.playbackRate, buttonContainer);
-  // } else {
-  //   ytVideo.playbackRate = 1;
-  speederDisplay.innerText = `${ytVideo.playbackRate.toFixed(2)}x`;
-  slider.value = ytVideo.playbackRate.toString();
-  highlightButton(1, buttonContainer);
-  // }
-
-  if (storage.hiddenSlider) {
-    speederDisplay.style.display = "none";
-    sliderContainer.style.display = "none";
-  }
-
   const ytPlayer = ytVideo.closest("#movie_player, #shorts-player");
 
   if (ytPlayer) {
     if (ytPlayer.id === "shorts-player") {
       console.log("[Speeder] Setting up MutationObserver for shorts-player");
       initShortsObserver(speederContainer);
+    }
+
+    videoSrc.current = ytVideo.src;
+    // console.log("[Speeder] Current currentVideoSrc:", videoSrc.current);
+    // console.log("[Speeder] latestVideoSrc video:", videoSrc.latest);
+
+    if (videoSrc.current && videoSrc.current !== videoSrc.latest) {
+      // console.log(
+      //   "[Speeder] Video changed (latest/current)",
+      //   videoSrc.latest,
+      //   videoSrc.current,
+      // );
+
+      videoSrc.latest = videoSrc.current;
+
+      // if (storage.playbackRate) {
+      //   ytVideo.playbackRate = storage.playbackRate;
+      //   speederDisplay.innerText = `${storage.playbackRate.toFixed(2)}x`;
+      //   slider.value = storage.playbackRate.toString();
+      //   highlightButton(storage.playbackRate, buttonContainer);
+      // } else {
+      //   ytVideo.playbackRate = 1;
+      speederDisplay.innerText = `${ytVideo.playbackRate.toFixed(2)}x`;
+      slider.value = ytVideo.playbackRate.toString();
+      highlightButton(1, buttonContainer);
+      // }
+    }
+
+    if (storage.hiddenSlider) {
+      speederDisplay.style.display = "none";
+      sliderContainer.style.display = "none";
     }
 
     speederListeners(

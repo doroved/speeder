@@ -1,9 +1,5 @@
 // import type { Storage } from "./initController";
-import { highlightButton } from "./initController";
-import { getVideoId } from "./utils/videoId";
-
-let currentVideoId: string | null = null;
-let latestVideoId: string | null = null;
+import { highlightButton, videoSrc } from "./initController";
 
 export const speederListeners = (
   speederToggle: HTMLDivElement,
@@ -91,27 +87,36 @@ export const speederListeners = (
   });
 
   // Этот код запускается при переходе на видео внутри YT
-  ytVideo.addEventListener("play", async () => {
+  ytVideo.addEventListener("play", () => {
     console.log("[Speeder] Video started playing");
 
-    currentVideoId = getVideoId();
-    console.log("[Speeder] Current videoId:", currentVideoId);
+    // console.log("[Speeder] ytVideo.src:", ytVideo.src);
 
-    if (currentVideoId !== latestVideoId && currentVideoId !== null) {
-      latestVideoId = currentVideoId;
-      console.log("[Speeder] Video changed", currentVideoId);
+    videoSrc.current = ytVideo.src;
+    // console.log("[Speeder] Current currentVideoSrc:", videoSrc.current);
+    // console.log("[Speeder] latestVideoSrc video:", videoSrc.latest);
 
-      speederDisplay.innerText = `${ytVideo.playbackRate.toFixed(2)}x`;
-      slider.value = ytVideo.playbackRate.toString();
+    if (videoSrc.current !== videoSrc.latest) {
+      // console.log(
+      //   "[Speeder] Video changed (latest/current)",
+      //   videoSrc.latest,
+      //   videoSrc.current,
+      // );
+
+      videoSrc.latest = videoSrc.current;
+
+      ytVideo.playbackRate = 1;
+      speederDisplay.innerText = "1x";
+      slider.value = "1";
       highlightButton(1, buttonContainer);
     }
 
     // const channelUsernameElement = document.querySelector(
-    // 	"#owner > ytd-video-owner-renderer > a",
+    //   "ytd-video-owner-renderer > a",
     // ) as HTMLAnchorElement | null;
     // const channelUsername = channelUsernameElement?.href
-    // 	? channelUsernameElement.href.split("@")[1]
-    // 	: undefined;
+    //   ? channelUsernameElement.href.split("@")[1]
+    //   : undefined;
     // console.log("[Speeder] ChannelUsername:", channelUsername);
 
     // const storage: Storage = await chrome.storage.sync.get(null);

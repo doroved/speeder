@@ -38,6 +38,7 @@ export function initVideoObserver() {
     for (const mutation of mutationsList) {
       for (const node of mutation.addedNodes) {
         if (node.nodeName === "VIDEO") {
+          // console.log("[Speeder] Video added:", (node as HTMLVideoElement).src);
           initSpeederController(node as HTMLVideoElement);
         }
       }
