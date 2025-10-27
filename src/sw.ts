@@ -6,3 +6,13 @@ chrome.storage.onChanged.addListener((changes, namespace) => {
     );
   }
 });
+
+chrome.runtime.onInstalled.addListener((details) => {
+  switch (details.reason) {
+    case "update":
+      chrome.tabs.create({
+        url: "https://github.com/doroved/speeder/blob/main/CHANGELOG.md",
+      });
+      break;
+  }
+});

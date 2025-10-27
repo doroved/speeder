@@ -8,8 +8,11 @@ export const speederListeners = (
   slider: HTMLInputElement,
   buttonContainer: HTMLElement,
   ytVideo: HTMLVideoElement,
+  speederContainer: HTMLElement,
+  ytPlayer: Element,
 ) => {
   let debounceTimer: NodeJS.Timeout;
+  let debounceTimer1: NodeJS.Timeout;
 
   slider.onclick = (event) => {
     event.preventDefault();
@@ -106,7 +109,7 @@ export const speederListeners = (
       videoSrc.latest = videoSrc.current;
 
       ytVideo.playbackRate = 1;
-      speederDisplay.innerText = "1x";
+      speederDisplay.innerText = `${ytVideo.playbackRate.toFixed(2)}x`;
       slider.value = "1";
       highlightButton(1, buttonContainer);
     }
@@ -131,5 +134,163 @@ export const speederListeners = (
     //   slider.value = ytVideo.playbackRate.toString();
     //   highlightButton(1, buttonContainer);
     // }
+  });
+
+  // Добавляем обработчик события нажатия клавиш
+  document.addEventListener("keydown", (event) => {
+    const target = event.target as HTMLElement;
+    if (target.id === "contenteditable-root") return;
+
+    if (event.code === "KeyV") {
+      if (getComputedStyle(speederContainer).visibility === "hidden") {
+        speederContainer.style.visibility = "visible";
+        chrome.storage.sync.set({ hiddenController: false });
+      } else {
+        speederContainer.style.visibility = "hidden";
+        chrome.storage.sync.set({ hiddenController: true });
+      }
+    }
+
+    // Toggle slider
+    if (event.code === "KeyB") {
+      speederToggle.click();
+
+      if (getComputedStyle(speederContainer).visibility === "hidden") {
+        speederContainer.style.visibility = "visible";
+      }
+
+      clearTimeout(debounceTimer1);
+      debounceTimer1 = setTimeout(() => {
+        chrome.storage.sync.get("hiddenController", (storage) => {
+          const hidden: boolean = storage.hiddenController || false;
+
+          if (hidden) {
+            speederContainer.style.visibility = "hidden";
+            return;
+          }
+
+          if (ytPlayer.classList.contains("ytp-autohide")) {
+            speederContainer.style.visibility = "hidden";
+          }
+        });
+      }, 3000);
+    }
+
+    // Decrease speed
+    if (event.code === "KeyS") {
+      if (ytVideo.playbackRate > 0.1) {
+        ytVideo.playbackRate = Number((ytVideo.playbackRate - 0.1).toFixed(1));
+      }
+      speederDisplay.innerText = `${ytVideo.playbackRate.toFixed(2)}x`;
+      slider.value = ytVideo.playbackRate.toString();
+      highlightButton(ytVideo.playbackRate, buttonContainer);
+
+      if (getComputedStyle(speederContainer).visibility === "hidden") {
+        speederContainer.style.visibility = "visible";
+      }
+
+      clearTimeout(debounceTimer1);
+      debounceTimer1 = setTimeout(() => {
+        chrome.storage.sync.get("hiddenController", (storage) => {
+          const hidden: boolean = storage.hiddenController || false;
+
+          if (hidden) {
+            speederContainer.style.visibility = "hidden";
+            return;
+          }
+
+          if (ytPlayer.classList.contains("ytp-autohide")) {
+            speederContainer.style.visibility = "hidden";
+          }
+        });
+      }, 3000);
+    }
+
+    // Increase speed
+    if (event.code === "KeyD") {
+      if (ytVideo.playbackRate < 16) {
+        ytVideo.playbackRate = Number((ytVideo.playbackRate + 0.1).toFixed(1));
+      }
+      speederDisplay.innerText = `${ytVideo.playbackRate.toFixed(2)}x`;
+      slider.value = ytVideo.playbackRate.toString();
+      highlightButton(ytVideo.playbackRate, buttonContainer);
+
+      if (getComputedStyle(speederContainer).visibility === "hidden") {
+        speederContainer.style.visibility = "visible";
+      }
+
+      clearTimeout(debounceTimer1);
+      debounceTimer1 = setTimeout(() => {
+        chrome.storage.sync.get("hiddenController", (storage) => {
+          const hidden: boolean = storage.hiddenController || false;
+
+          if (hidden) {
+            speederContainer.style.visibility = "hidden";
+            return;
+          }
+
+          if (ytPlayer.classList.contains("ytp-autohide")) {
+            speederContainer.style.visibility = "hidden";
+          }
+        });
+      }, 3000);
+    }
+
+    // Reset speed
+    if (event.code === "KeyR") {
+      ytVideo.playbackRate = 1;
+      speederDisplay.innerText = `${ytVideo.playbackRate.toFixed(2)}x`;
+      slider.value = ytVideo.playbackRate.toString();
+      highlightButton(1, buttonContainer);
+
+      if (getComputedStyle(speederContainer).visibility === "hidden") {
+        speederContainer.style.visibility = "visible";
+      }
+
+      clearTimeout(debounceTimer1);
+      debounceTimer1 = setTimeout(() => {
+        chrome.storage.sync.get("hiddenController", (storage) => {
+          const hidden: boolean = storage.hiddenController || false;
+
+          if (hidden) {
+            speederContainer.style.visibility = "hidden";
+            return;
+          }
+
+          if (ytPlayer.classList.contains("ytp-autohide")) {
+            speederContainer.style.visibility = "hidden";
+          }
+        });
+      }, 3000);
+    }
+
+    // Set favorite speed
+    if (event.code === "KeyG") {
+      ytVideo.playbackRate = ytVideo.playbackRate === 2 ? 1 : 2;
+      speederDisplay.innerText = `${ytVideo.playbackRate.toFixed(2)}x`;
+      slider.value = ytVideo.playbackRate.toString();
+      highlightButton(ytVideo.playbackRate, buttonContainer);
+      // chrome.storage.sync.set({ favoriteSpeed: ytVideo.playbackRate });
+
+      if (getComputedStyle(speederContainer).visibility === "hidden") {
+        speederContainer.style.visibility = "visible";
+      }
+
+      clearTimeout(debounceTimer1);
+      debounceTimer1 = setTimeout(() => {
+        chrome.storage.sync.get("hiddenController", (storage) => {
+          const hidden: boolean = storage.hiddenController || false;
+
+          if (hidden) {
+            speederContainer.style.visibility = "hidden";
+            return;
+          }
+
+          if (ytPlayer.classList.contains("ytp-autohide")) {
+            speederContainer.style.visibility = "hidden";
+          }
+        });
+      }, 3000);
+    }
   });
 };

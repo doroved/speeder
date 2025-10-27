@@ -9,7 +9,7 @@ export default defineConfig(({ mode }) => {
       rollupOptions: {
         input: {
           main: "./src/app.ts",
-          // sw: "./src/sw.ts",
+          sw: "./src/sw.ts",
           css: "./src/assets/app.css",
         },
         output: [

@@ -7,24 +7,35 @@ export function initPlayerObserver(
   let hideTimer: NodeJS.Timeout;
 
   const classObserver = new MutationObserver(() => {
-    if (ytPlayer.classList.contains("ytp-progress-bar-hover")) {
-      clearTimeout(hideTimer); // Очищаем текущий таймер, если класс появился
-    } else if (
-      ytPlayer.classList.contains("ytp-autohide") || // Нет фокуса курсора мышки на плеере
-      ytPlayer.classList.contains("ended-mode") || // Видео завершено
-      ytPlayer.classList.contains("ytp-player-minimized") // Мини-плеер
-    ) {
-      speederContainer.style.visibility = "hidden";
-    } else {
-      speederContainer.style.visibility = "visible";
-    }
+    chrome.storage.sync.get("hiddenController", (storage) => {
+      const hidden: boolean = storage.hiddenController || false;
+      const ytpChromeBottom = document.querySelector(".ytp-chrome-bottom");
 
-    // Запускаем таймер на 20ms, чтобы скрыть контейнер, если класс не появляется
-    hideTimer = setTimeout(() => {
-      if (ytPlayer.classList.contains("ytp-progress-bar-hover")) {
-        speederContainer.style.visibility = "hidden";
+      if (ytpChromeBottom && location.pathname.startsWith("/watch")) {
+        speederContainer.style.bottom = `${(ytpChromeBottom as HTMLElement).offsetHeight + 10}px`;
       }
-    }, 20);
+
+      if (!hidden) {
+        if (ytPlayer.classList.contains("ytp-progress-bar-hover")) {
+          clearTimeout(hideTimer); // Очищаем текущий таймер, если класс появился
+        } else if (
+          ytPlayer.classList.contains("ytp-autohide") || // Нет фокуса курсора мышки на плеере
+          ytPlayer.classList.contains("ended-mode") || // Видео завершено
+          ytPlayer.classList.contains("ytp-player-minimized") // Мини-плеер
+        ) {
+          speederContainer.style.visibility = "hidden";
+        } else {
+          speederContainer.style.visibility = "visible";
+        }
+
+        // Запускаем таймер на 20ms, чтобы скрыть контейнер, если класс не появляется
+        hideTimer = setTimeout(() => {
+          if (ytPlayer.classList.contains("ytp-progress-bar-hover")) {
+            speederContainer.style.visibility = "hidden";
+          }
+        }, 20);
+      }
+    });
   });
 
   classObserver.observe(ytPlayer, {

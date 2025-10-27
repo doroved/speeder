@@ -9,6 +9,7 @@ export interface Channel {
 export interface Storage {
   playbackRate: number;
   hiddenSlider: boolean;
+  hiddenController: boolean;
   channel: Channel[];
 }
 
@@ -110,9 +111,18 @@ export const initSpeederController = async (ytVideo: HTMLVideoElement) => {
       // }
     }
 
+    if (storage.hiddenController) {
+      speederContainer.style.visibility = "hidden";
+    }
+
     if (storage.hiddenSlider) {
       speederDisplay.style.display = "none";
       sliderContainer.style.display = "none";
+    }
+
+    // Hide controller if video is not started automatically
+    if (ytPlayer.classList.contains("unstarted-mode")) {
+      speederContainer.style.visibility = "hidden";
     }
 
     speederListeners(
@@ -122,6 +132,8 @@ export const initSpeederController = async (ytVideo: HTMLVideoElement) => {
       slider,
       buttonContainer,
       ytVideo,
+      speederContainer,
+      ytPlayer,
     );
 
     ytPlayer.appendChild(speederContainer);
@@ -139,7 +151,7 @@ export const highlightButton = (
 
   for (const btn of buttons) {
     btn.style.backgroundColor = ""; // Возвращаем фоновый цвет
-    btn.style.color = ""; // Возвращаем цвет текста
+    // btn.style.color = ""; // Возвращаем цвет текста
   }
 
   // Выделяем кнопку, соответствующую текущей скорости

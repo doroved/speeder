@@ -1,0 +1,124 @@
+<!doctype html>
+
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Настройки</title>
+        <link rel="stylesheet" href="styles.css" />
+        <!-- Подключите файл стилей -->
+        <script src="options.js"></script>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #111;
+                color: #fff;
+            }
+
+            .shortcuts {
+                margin: 20px 0;
+            }
+
+            .shortcut {
+                display: flex;
+                align-items: center;
+                margin: 10px 0;
+            }
+
+            .shortcut label {
+                flex: 1;
+                margin-right: 10px;
+            }
+
+            input[type="number"],
+            select {
+                padding: 5px;
+                margin-left: 10px;
+            }
+
+            input[type="submit"] {
+                background-color: #4caf50;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                cursor: pointer;
+            }
+
+            input[type="submit"]:hover {
+                background-color: #45a049;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Настройки</h1>
+        <div class="shortcuts">
+            <h2>Сочетания клавиш</h2>
+            <div class="shortcut">
+                <label for="showHideController"
+                    >Показать/скрыть контроллер:</label
+                >
+                <select disabled id="showHideController">
+                    <option value="V">V</option>
+                </select>
+            </div>
+            <div class="shortcut">
+                <label for="decreaseSpeed">Уменьшить скорость:</label>
+                <select id="decreaseSpeed">
+                    <option value="S">S</option>
+                </select>
+                <input
+                    type="number"
+                    value="0.1"
+                    min="0.1"
+                    step="0.1"
+                    class="shortcut-value"
+                />
+            </div>
+            <div class="shortcut">
+                <label for="increaseSpeed">Увеличить скорость:</label>
+                <select id="increaseSpeed">
+                    <option value="D">D</option>
+                </select>
+                <input
+                    type="number"
+                    value="0.1"
+                    min="0.1"
+                    step="0.1"
+                    class="shortcut-value"
+                />
+            </div>
+
+            <div class="shortcut">
+                <label for="reset">Сбросить скорость:</label>
+                <select id="reset">
+                    <option value="R">R</option>
+                </select>
+                <input
+                    type="number"
+                    value="1"
+                    min="0"
+                    step="0.1"
+                    class="shortcut-value"
+                />
+            </div>
+            <div class="shortcut">
+                <label for="preferredSpeed">Предпочитаемая скорость:</label>
+                <select id="preferredSpeed">
+                    <option value="G">G</option>
+                </select>
+                <input
+                    type="number"
+                    value="1.8"
+                    min="0"
+                    step="0.1"
+                    class="shortcut-value"
+                />
+            </div>
+        </div>
+        <form action="save_settings.php" method="post">
+            <div>
+                <input type="submit" value="Сохранить настройки" />
+            </div>
+        </form>
+    </body>
+</html>
